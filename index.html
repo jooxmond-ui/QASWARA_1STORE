@@ -316,18 +316,48 @@
   .ticker-bar{
     background:#141414;color:#fff;overflow:hidden;white-space:nowrap;
     padding:9px 0;font-size:12.5px;font-weight:700;
+    direction:ltr;
   }
   .ticker-track{
     display:inline-flex;width:max-content;
-    animation:tickerScroll 24s linear infinite;
+    animation:tickerScroll 90s linear infinite;
   }
   .ticker-track span{
     display:inline-flex;align-items:center;gap:8px;
     padding:0 26px;border-left:1px solid rgba(255,255,255,.25);
+    direction:rtl;unicode-bidi:isolate;
   }
   @keyframes tickerScroll{
     from{transform:translateX(0);}
     to{transform:translateX(-50%);}
+  }
+
+  /* Waybill / print styles */
+  #printArea{display:none;}
+  .waybill{
+    width:100%; max-width:700px; margin:0 auto 20px; font-family:Arial, sans-serif;
+    border:2px solid #000; direction:rtl; color:#000; background:#fff;
+  }
+  .waybill-header{display:flex; justify-content:space-between; align-items:stretch; border-bottom:2px solid #000;}
+  .waybill-total{padding:14px; text-align:center; border-left:2px solid #000; min-width:110px; display:flex; flex-direction:column; justify-content:center;}
+  .waybill-total .lbl{font-size:12px;}
+  .waybill-total .val{font-size:20px;font-weight:800;}
+  .waybill-brand{flex:1;text-align:center;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .waybill-brand .circle{width:36px;height:36px;border-radius:50%;background:#F5C21B;display:inline-flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:4px;}
+  .waybill-brand .name{font-weight:800;font-size:16px;}
+  .waybill-brand .tag{font-size:10px;color:#555;}
+  .waybill-meta{padding:10px;text-align:left;border-right:2px solid #000;min-width:150px;font-size:12px;}
+  .waybill-meta .code{font-weight:800;font-size:13px;}
+  .waybill-meta .dt{font-size:11px;color:#333;margin-top:2px;}
+  .waybill-row{display:flex;border-bottom:1px solid #000;}
+  .waybill-row .k{width:130px;padding:8px;font-weight:700;border-left:1px solid #000;background:#f4f4f4;text-align:center;font-size:12.5px;}
+  .waybill-row .v{flex:1;padding:8px;text-align:right;font-size:12.5px;}
+  .waybill-city{padding:6px;text-align:center;font-weight:700;background:#f4f4f4;font-size:12.5px;}
+  @media print{
+    body *{visibility:hidden;}
+    #printArea, #printArea *{visibility:visible;}
+    #printArea{display:block; position:absolute; top:0; left:0; width:100%; padding:20px;}
+    .waybill{page-break-after:always;}
   }
 
   /* FAQ accordion */
@@ -493,7 +523,25 @@
 <body>
 
 <div class="ticker-bar">
-  <div class="ticker-track">
+  <div class="ticker-track" id="tickerTrack">
+    <span>🚚 التوصيل خلال 3 إلى 4 أيام لجميع المحافظات</span>
+    <span>🔄 ضمان استبدال واسترجاع خلال 14 يوم</span>
+    <span>✅ من حق جميع عملائنا معاينة المنتج عند الاستلام</span>
+    <span>🚚 التوصيل خلال 3 إلى 4 أيام لجميع المحافظات</span>
+    <span>🔄 ضمان استبدال واسترجاع خلال 14 يوم</span>
+    <span>✅ من حق جميع عملائنا معاينة المنتج عند الاستلام</span>
+    <span>🚚 التوصيل خلال 3 إلى 4 أيام لجميع المحافظات</span>
+    <span>🔄 ضمان استبدال واسترجاع خلال 14 يوم</span>
+    <span>✅ من حق جميع عملائنا معاينة المنتج عند الاستلام</span>
+    <span>🚚 التوصيل خلال 3 إلى 4 أيام لجميع المحافظات</span>
+    <span>🔄 ضمان استبدال واسترجاع خلال 14 يوم</span>
+    <span>✅ من حق جميع عملائنا معاينة المنتج عند الاستلام</span>
+    <span>🚚 التوصيل خلال 3 إلى 4 أيام لجميع المحافظات</span>
+    <span>🔄 ضمان استبدال واسترجاع خلال 14 يوم</span>
+    <span>✅ من حق جميع عملائنا معاينة المنتج عند الاستلام</span>
+    <span>🚚 التوصيل خلال 3 إلى 4 أيام لجميع المحافظات</span>
+    <span>🔄 ضمان استبدال واسترجاع خلال 14 يوم</span>
+    <span>✅ من حق جميع عملائنا معاينة المنتج عند الاستلام</span>
     <span>🚚 التوصيل خلال 3 إلى 4 أيام لجميع المحافظات</span>
     <span>🔄 ضمان استبدال واسترجاع خلال 14 يوم</span>
     <span>✅ من حق جميع عملائنا معاينة المنتج عند الاستلام</span>
@@ -514,7 +562,7 @@
       <path d="M62 34 L62 46 L50 46" stroke="#F5C21B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       <circle cx="50" cy="50" r="5" fill="#F5C21B"/>
     </svg>
-    <div>
+    <div style="cursor:pointer;" onclick="goHome()">
       <div class="logo">QASWARA<span>.STORE</span></div>
       <div style="font-size:10px;color:var(--gray);letter-spacing:.5px;">Smart watch &amp; Airpods</div>
     </div>
@@ -738,11 +786,11 @@
     <label>الوصف</label>
     <textarea id="epDesc"></textarea>
 
-    <label>السعر (ج.م)</label>
+    <label>السعر (ج.م) — السعر النهائي اللي هيتباع بيه</label>
     <input type="number" id="epPrice" />
 
-    <label>نسبة الخصم % (اختياري)</label>
-    <input type="number" id="epDiscount" min="0" max="90" placeholder="مثال: 20" />
+    <label>السعر قبل الخصم (اختياري) — لو عايز تظهره مشطوب</label>
+    <input type="number" id="epOldPrice" min="0" placeholder="مثال: 950" />
 
     <label>القسم</label>
     <select id="epCategory">
@@ -791,11 +839,11 @@
     <label>الوصف</label>
     <textarea id="wDesc" placeholder="اكتب وصف مختصر للمنتج"></textarea>
 
-    <label>السعر (ج.م)</label>
+    <label>السعر (ج.م) — السعر النهائي اللي هيتباع بيه</label>
     <input type="number" id="wPrice" placeholder="مثال: 749" />
 
-    <label>نسبة الخصم % (اختياري)</label>
-    <input type="number" id="wDiscount" min="0" max="90" placeholder="مثال: 20" />
+    <label>السعر قبل الخصم (اختياري) — لو عايز تظهره مشطوب</label>
+    <input type="number" id="wOldPrice" min="0" placeholder="مثال: 950" />
 
     <label>القسم</label>
     <select id="wCategory">
@@ -817,6 +865,9 @@
 <div id="ordersModal" class="modal-overlay">
   <div class="modal-box" style="max-width:640px;">
     <h3>الطلبات الواردة</h3>
+    <div style="display:flex;justify-content:flex-end;margin-bottom:8px;">
+      <button class="btn-secondary" style="font-size:12px;padding:6px 12px;" onclick="printSelectedOrders()">🖨️ طباعة المحدد</button>
+    </div>
     <div style="overflow-x:auto;">
       <table class="orders-table" id="ordersTable"></table>
     </div>
@@ -825,6 +876,8 @@
     </div>
   </div>
 </div>
+
+<div id="printArea"></div>
 
 <div id="editOrderModal" class="modal-overlay">
   <div class="modal-box">
@@ -903,8 +956,45 @@ async function uploadVideoToCloudinary(file){
   return data.secure_url;
 }
 
-function openModal(id){ document.getElementById(id).classList.add('show'); }
-function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+/* ---------- back-button navigation trap ---------- */
+let navStack = [];
+let isProgrammaticNav = false;
+window.addEventListener('popstate', function(){
+  if(isProgrammaticNav){ isProgrammaticNav = false; return; }
+  if(navStack.length){
+    const closer = navStack.pop();
+    closer();
+  }
+});
+function pushNav(closer){
+  navStack.push(closer);
+  history.pushState({qsNav:navStack.length}, '');
+}
+function goHome(){
+  document.getElementById('detailView').classList.remove('show');
+  document.getElementById('checkoutView').classList.remove('show');
+  document.getElementById('thankYou').classList.remove('show');
+  document.getElementById('thankYou').style.display = 'none';
+  document.querySelectorAll('.modal-overlay.show').forEach(m => m.classList.remove('show'));
+  document.getElementById('shopView').style.display = 'block';
+  navStack = [];
+  window.scrollTo(0,0);
+}
+
+function openModal(id){
+  document.getElementById(id).classList.add('show');
+  pushNav(function(){ document.getElementById(id).classList.remove('show'); });
+}
+function closeModal(id){
+  const el = document.getElementById(id);
+  if(!el.classList.contains('show')) return;
+  el.classList.remove('show');
+  if(navStack.length){
+    navStack.pop();
+    isProgrammaticNav = true;
+    history.back();
+  }
+}
 function isAdmin(){ return sessionStorage.getItem('qs_admin') === '1'; }
 
 function setAdminUI(){
@@ -938,7 +1028,7 @@ document.getElementById('logoutLink').addEventListener('click', function(e){
 
 document.getElementById('moreAdminLink').addEventListener('click', function(e){
   e.preventDefault();
-  closeModal('moreModal');
+  document.getElementById('moreModal').classList.remove('show');
   openLogin();
 });
 document.getElementById('moreLogoutLink').addEventListener('click', function(e){
@@ -948,7 +1038,7 @@ document.getElementById('moreLogoutLink').addEventListener('click', function(e){
 });
 document.getElementById('moreOrdersLink').addEventListener('click', function(e){
   e.preventDefault();
-  closeModal('moreModal');
+  document.getElementById('moreModal').classList.remove('show');
   renderOrdersTable();
   openModal('ordersModal');
 });
@@ -973,7 +1063,7 @@ const INFO_PAGES = {
   },
   returns: {
     title: 'سياسة الاستبدال والاسترجاع',
-    body: '- بنوفر ضمان استبدال واسترجاع لمدة 14 يوم من تاريخ استلام المنتج.\n- الاستبدال أو الاسترجاع بيكون في حالة وجود عيب صناعي أو المنتج غير مطابق للمواصفات.\n- لازم يكون المنتج في حالته الأصلية وبدون استخدام وبكامل ملحقاته وعلبته.\n- للطلب، تواصل معانا عبر الواتساب خلال مدة الضمان وهنرتب موعد استلام واستبدال المنتج.'
+    body: '- بنوفر ضمان استبدال واسترجاع لمدة 14 يوم من تاريخ استلام المنتج.\n- الاستبدال أو الاسترجاع بيكون في حالة وجود عيب صناعي أو المنتج غير مطابق للمواصفات.\n- لازم يكون المنتج في حالته الأصلية وبكامل ملحقاته وعلبته.\n- للطلب، تواصل معانا عبر الواتساب خلال مدة الضمان وهنرتب موعد استلام واستبدال المنتج.'
   },
   privacy: {
     title: 'سياسات الخصوصية',
@@ -986,11 +1076,11 @@ function openInfoPage(key){
   if(!page) return;
   document.getElementById('infoPageTitle').textContent = page.title;
   document.getElementById('infoPageBody').textContent = page.body;
-  closeModal('moreModal');
+  document.getElementById('moreModal').classList.remove('show');
   openModal('infoPageModal');
 }
 function backToMoreMenu(){
-  closeModal('infoPageModal');
+  document.getElementById('infoPageModal').classList.remove('show');
   openModal('moreModal');
 }
 
@@ -1091,9 +1181,16 @@ function mainImage(p){
 }
 
 function finalPrice(p){
-  const d = Number(p.discount) || 0;
-  if(d > 0) return Math.round(p.price - (p.price * d / 100));
-  return p.price;
+  return Number(p.price) || 0;
+}
+
+function discountPercent(p){
+  const orig = Number(p.originalPrice) || 0;
+  const price = Number(p.price) || 0;
+  if(orig > price && price > 0){
+    return Math.round((1 - price / orig) * 100);
+  }
+  return 0;
 }
 
 let productsCache = [];
@@ -1112,8 +1209,8 @@ async function addProduct(){
   const name = document.getElementById('wName').value.trim();
   const desc = document.getElementById('wDesc').value.trim();
   const price = parseFloat(document.getElementById('wPrice').value);
-  const discountRaw = document.getElementById('wDiscount').value;
-  const discount = discountRaw ? Math.min(90, Math.max(0, parseFloat(discountRaw))) : 0;
+  const oldPriceRaw = document.getElementById('wOldPrice').value;
+  const originalPrice = oldPriceRaw ? Math.max(0, parseFloat(oldPriceRaw)) : 0;
   const category = document.getElementById('wCategory').value;
 
   if(!name || isNaN(price) || price <= 0){
@@ -1137,7 +1234,7 @@ async function addProduct(){
       videoUrl = await uploadVideoToCloudinary(pendingVideoFile);
     }
     await db.collection('products').add({
-      name, desc, price, discount, category,
+      name, desc, price, originalPrice, category,
       images: imageUrls,
       image: imageUrls[0] || null,
       video: videoUrl,
@@ -1169,7 +1266,7 @@ function openEditProduct(id){
   document.getElementById('epName').value = p.name || '';
   document.getElementById('epDesc').value = p.desc || '';
   document.getElementById('epPrice').value = p.price || '';
-  document.getElementById('epDiscount').value = p.discount || '';
+  document.getElementById('epOldPrice').value = p.originalPrice || '';
   document.getElementById('epCategory').value = p.category || '';
   document.getElementById('epError').style.display = 'none';
   openModal('editProductModal');
@@ -1179,8 +1276,8 @@ async function saveProductEdit(){
   const name = document.getElementById('epName').value.trim();
   const desc = document.getElementById('epDesc').value.trim();
   const price = parseFloat(document.getElementById('epPrice').value);
-  const discountRaw = document.getElementById('epDiscount').value;
-  const discount = discountRaw ? Math.min(90, Math.max(0, parseFloat(discountRaw))) : 0;
+  const oldPriceRaw = document.getElementById('epOldPrice').value;
+  const originalPrice = oldPriceRaw ? Math.max(0, parseFloat(oldPriceRaw)) : 0;
   const category = document.getElementById('epCategory').value;
 
   if(!name || isNaN(price) || price <= 0){
@@ -1194,7 +1291,7 @@ async function saveProductEdit(){
   saveBtn.textContent = 'جارٍ الحفظ...';
   saveBtn.disabled = true;
   try{
-    await db.collection('products').doc(editingProductId).update({ name, desc, price, discount, category });
+    await db.collection('products').doc(editingProductId).update({ name, desc, price, originalPrice, category });
     closeModal('editProductModal');
     editingProductId = null;
     await render();
@@ -1216,16 +1313,15 @@ function buildProductCard(p, idx){
   const thumbHtml = img
     ? '<img src="'+img+'" alt="">'
     : '<span class="ph">بدون صورة</span>';
-  const discount = Number(p.discount) || 0;
+  const discount = discountPercent(p);
   const badgeHtml = discount > 0 ? `<div class="discount-badge">-${discount}%</div>` : '';
   const priceHtml = discount > 0
-    ? `<div class="price-row"><span class="price-old">${p.price} ج.م</span><span class="price price-new">${finalPrice(p)} ج.م</span></div>`
-    : `<div class="price">${p.price} ج.م</div>`;
+    ? `<div class="price-row"><span class="price-old">${p.originalPrice} ج.م</span><span class="price price-new">${finalPrice(p)} ج.م</span></div>`
+    : `<div class="price">${finalPrice(p)} ج.م</div>`;
   card.innerHTML = `
     <div class="thumb" onclick="openProductDetail('${p.id}')">${badgeHtml}${thumbHtml}</div>
     <div class="body">
       <div class="name" onclick="openProductDetail('${p.id}')"></div>
-      <div class="desc" onclick="openProductDetail('${p.id}')"></div>
       ${priceHtml}
       <button class="order-btn" onclick="startOrder('${p.id}')">اطلب الآن</button>
       <button class="cart-btn" onclick="addToCart('${p.id}')">أضف للسلة</button>
@@ -1234,7 +1330,6 @@ function buildProductCard(p, idx){
     </div>
   `;
   card.querySelector('.name').textContent = p.name;
-  card.querySelector('.desc').textContent = p.desc || '';
   return card;
 }
 
@@ -1342,12 +1437,12 @@ function openProductDetail(id){
 
   document.getElementById('detailName').textContent = p.name;
   document.getElementById('detailDesc').textContent = p.desc || '';
-  const discount = Number(p.discount) || 0;
+  const discount = discountPercent(p);
   const priceEl = document.getElementById('detailPrice');
   if(discount > 0){
-    priceEl.innerHTML = `<span class="price-old" style="font-size:15px;">${p.price} ج.م</span> <span class="price-new">${finalPrice(p)} ج.م</span><span class="detail-discount-badge">-${discount}%</span>`;
+    priceEl.innerHTML = `<span class="price-old" style="font-size:15px;">${p.originalPrice} ج.م</span> <span class="price-new">${finalPrice(p)} ج.م</span><span class="detail-discount-badge">-${discount}%</span>`;
   } else {
-    priceEl.textContent = p.price + ' ج.م';
+    priceEl.textContent = finalPrice(p) + ' ج.م';
   }
 
   const relatedGrid = document.getElementById('relatedGrid');
@@ -1361,14 +1456,27 @@ function openProductDetail(id){
   document.getElementById('checkoutView').classList.remove('show');
   document.getElementById('thankYou').classList.remove('show');
   document.getElementById('thankYou').style.display = 'none';
+  const wasDetailOpen = document.getElementById('detailView').classList.contains('show');
   document.getElementById('detailView').classList.add('show');
+  window.scrollTo(0,0);
+  if(!wasDetailOpen) pushNav(closeDetailInternal);
+}
+
+function closeDetailInternal(){
+  document.getElementById('detailView').classList.remove('show');
+  document.getElementById('shopView').style.display = 'block';
   window.scrollTo(0,0);
 }
 
 function closeDetail(){
-  document.getElementById('detailView').classList.remove('show');
-  document.getElementById('shopView').style.display = 'block';
-  window.scrollTo(0,0);
+  const el = document.getElementById('detailView');
+  if(!el.classList.contains('show')) return;
+  closeDetailInternal();
+  if(navStack.length && navStack[navStack.length-1] === closeDetailInternal){
+    navStack.pop();
+    isProgrammaticNav = true;
+    history.back();
+  }
 }
 
 function startOrderFromDetail(){
@@ -1495,26 +1603,40 @@ function startCartCheckout(){
   if(!items.length) return;
   checkoutItems = items;
   checkoutFromCart = true;
-  closeModal('cartModal');
+  document.getElementById('cartModal').classList.remove('show');
   openCheckoutView();
 }
 
 function openCheckoutView(){
   renderCheckout();
+  const wasOpen = document.getElementById('checkoutView').classList.contains('show');
   document.getElementById('shopView').style.display = 'none';
   document.getElementById('detailView').classList.remove('show');
   document.getElementById('thankYou').classList.remove('show');
   document.getElementById('thankYou').style.display = 'none';
   document.getElementById('checkoutView').classList.add('show');
   window.scrollTo(0,0);
+  if(!wasOpen) pushNav(closeCheckoutInternal);
 }
 
-function backToShop(){
+function closeCheckoutInternal(){
   document.getElementById('checkoutView').classList.remove('show');
   document.getElementById('thankYou').classList.remove('show');
   document.getElementById('thankYou').style.display = 'none';
   document.getElementById('shopView').style.display = 'block';
   window.scrollTo(0,0);
+}
+
+function backToShop(){
+  const wasShown = document.getElementById('checkoutView').classList.contains('show') ||
+                   document.getElementById('thankYou').classList.contains('show');
+  if(!wasShown) return;
+  closeCheckoutInternal();
+  if(navStack.length && navStack[navStack.length-1] === closeCheckoutInternal){
+    navStack.pop();
+    isProgrammaticNav = true;
+    history.back();
+  }
 }
 
 function changeQty(delta, productId){
@@ -1579,8 +1701,8 @@ async function submitOrder(){
     const items = checkoutItems.map(it => ({
       productName: it.product.name,
       unitPrice: finalPrice(it.product),
-      originalPrice: it.product.price,
-      discount: Number(it.product.discount) || 0,
+      originalPrice: Number(it.product.originalPrice) || 0,
+      discount: discountPercent(it.product),
       qty: it.qty,
       total: finalPrice(it.product) * it.qty
     }));
@@ -1634,16 +1756,18 @@ async function renderOrdersTable(){
     table.innerHTML = '<tr><td style="padding:14px 0;color:var(--gray);">لسه معندناش طلبات.</td></tr>';
     return;
   }
-  let html = '<tr><th>المنتجات</th><th>الكمية</th><th>الإجمالي</th><th>الاسم</th><th>الهاتف</th><th>المحافظة</th><th>العنوان</th><th>التاريخ</th><th></th></tr>';
+  let html = '<tr><th></th><th>المنتجات</th><th>الكمية</th><th>الإجمالي</th><th>الاسم</th><th>الهاتف</th><th>المحافظة</th><th>العنوان</th><th>التاريخ</th><th></th></tr>';
   orders.forEach(o => {
     const totalQty = orderTotalQty(o);
     html += `<tr>
+      <td><input type="checkbox" class="order-check" data-id="${o.id}"></td>
       <td></td><td>${totalQty}</td><td>${o.total} ج.م</td>
       <td></td><td>${o.phone}${o.phone2 ? ' / '+o.phone2 : ''}</td>
       <td>${o.gov}</td><td></td><td>${o.date}</td>
       <td style="white-space:nowrap;">
         <button class="edit-order-btn" data-id="${o.id}">تعديل</button>
         <button class="edit-order-btn" style="background:#e63946;margin-right:4px;" data-del-id="${o.id}">حذف</button>
+        <button class="edit-order-btn" style="background:#2a9d8f;margin-right:4px;" data-print-id="${o.id}">🖨️ طباعة</button>
       </td>
     </tr>`;
   });
@@ -1651,9 +1775,9 @@ async function renderOrdersTable(){
   const rows = table.querySelectorAll('tr');
   orders.forEach((o, i) => {
     const cells = rows[i+1].querySelectorAll('td');
-    cells[0].textContent = orderProductsSummary(o);
-    cells[3].textContent = o.name;
-    cells[6].textContent = o.address + (o.notes ? ' — '+o.notes : '');
+    cells[1].textContent = orderProductsSummary(o);
+    cells[4].textContent = o.name;
+    cells[7].textContent = o.address + (o.notes ? ' — '+o.notes : '');
   });
   table.querySelectorAll('.edit-order-btn[data-id]').forEach(btn => {
     btn.addEventListener('click', function(){
@@ -1663,6 +1787,11 @@ async function renderOrdersTable(){
   table.querySelectorAll('[data-del-id]').forEach(btn => {
     btn.addEventListener('click', function(){
       deleteOrder(btn.dataset.delId);
+    });
+  });
+  table.querySelectorAll('[data-print-id]').forEach(btn => {
+    btn.addEventListener('click', function(){
+      printSingleOrder(btn.dataset.printId);
     });
   });
 }
@@ -1678,6 +1807,58 @@ function orderTotalQty(o){
     return o.items.reduce((s,it) => s + it.qty, 0);
   }
   return o.qty || 0;
+}
+
+/* ---------- printing waybills ---------- */
+function hashCode(str){
+  let h = 0;
+  for(let i=0;i<str.length;i++){ h = (h<<5)-h+str.charCodeAt(i); h|=0; }
+  return Math.abs(h);
+}
+function genOrderCode(o){
+  const digits = (o.id || '').replace(/[^0-9]/g,'');
+  const num = digits.length >= 6 ? digits.slice(-6) : String(hashCode(o.id || o.name || '')).padStart(6,'0').slice(-6);
+  return 'QS' + num;
+}
+function buildWaybillHTML(o){
+  const code = genOrderCode(o);
+  const productsText = orderProductsSummary(o);
+  return `
+  <div class="waybill">
+    <div class="waybill-header">
+      <div class="waybill-total">
+        <div class="lbl">الاجمالي</div>
+        <div class="val">${o.total} ج.م</div>
+      </div>
+      <div class="waybill-brand">
+        <div class="circle">🕐</div>
+        <div class="name">قسورة ستور</div>
+        <div class="tag">Smart watch &amp; Airpods</div>
+      </div>
+      <div class="waybill-meta">
+        <div class="code">${code}</div>
+        <div class="dt">${o.date || ''}</div>
+        <div class="dt">${o.gov || ''}</div>
+      </div>
+    </div>
+    <div class="waybill-row"><div class="k">المرسل اليه:</div><div class="v">${o.name || ''}</div></div>
+    <div class="waybill-row"><div class="k">العنوان:</div><div class="v">${o.address || ''}${o.notes ? ' - '+o.notes : ''}</div></div>
+    <div class="waybill-row"><div class="k">الموبايل:</div><div class="v">${o.phone || ''}${o.phone2 ? ' / '+o.phone2 : ''}</div></div>
+    <div class="waybill-row"><div class="k">رقم الطلب:</div><div class="v">${code}</div></div>
+    <div class="waybill-row"><div class="k">اسم المنتج:</div><div class="v">${productsText}</div></div>
+    <div class="waybill-city">${o.gov || ''}</div>
+  </div>`;
+}
+function printOrders(ids){
+  const list = ordersCache.filter(o => ids.includes(o.id));
+  if(!list.length){ alert('اختار طلب واحد على الأقل عشان تطبعه'); return; }
+  document.getElementById('printArea').innerHTML = list.map(buildWaybillHTML).join('');
+  window.print();
+}
+function printSingleOrder(id){ printOrders([id]); }
+function printSelectedOrders(){
+  const checked = Array.from(document.querySelectorAll('.order-check:checked')).map(c => c.dataset.id);
+  printOrders(checked);
 }
 
 async function deleteOrder(id){
@@ -1710,7 +1891,7 @@ function openEditOrder(id){
   document.getElementById('eAddress').value = order.address;
   document.getElementById('eNotes').value = order.notes || '';
   document.getElementById('eError').style.display = 'none';
-  closeModal('ordersModal');
+  document.getElementById('ordersModal').classList.remove('show');
   openModal('editOrderModal');
 }
 
@@ -1737,7 +1918,7 @@ async function saveOrderEdit(){
 
   try{
     await db.collection('orders').doc(editingOrderId).update(updates);
-    closeModal('editOrderModal');
+    document.getElementById('editOrderModal').classList.remove('show');
     editingOrderId = null;
     await renderOrdersTable();
     openModal('ordersModal');
